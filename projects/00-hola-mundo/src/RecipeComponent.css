@@ -1,0 +1,113 @@
+/* Recipe card container */
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Recipe title */
+.recipe-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Recipe image */
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Recipe description */
+.recipe-description {
+    font-size: 16px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Like button */
+.like-button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.likeText {
+    display: block;
+}
+
+/* liked button style */
+.like-button.liked {
+    background-color: white;
+    color: black;
+    border: 1px solid #ff0000;
+}
+
+/* Hover effect */
+.like-button.liked:hover {
+    background-color: #f44336;
+    color: #fff;
+    transition: .3s ease background-color;
+}
+
+.like-button.liked:hover .likeText {
+    display: none;
+    transition: .3s ease;
+}
+
+.like-button.liked:hover .dislike {
+    display: block;
+}
+
+.dislike {
+    display: none;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    transition: .3s ease background-color;
+}
+
+
+/* Comment button */
+.comment-button {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30%;
+}
+
+/* Add button */
+.add-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30%;
+}
+
+
