@@ -1,4 +1,5 @@
 import './Login.css'
+import RegisterPopUp from './RegisterPopUp';
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -8,6 +9,9 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
+
+    //states and hooks for register
+    const [show, setShow] = useState(false);
 
     //handle login
     const handleLogin = async () => {
@@ -100,9 +104,11 @@ const Login = () => {
                     <button
                         className=" bg-white w-60 hover:bg-white text-black font-bold py-2 px-4 rounded-3xl border-2 border-white hover:border-2 focus:outline-none focus:shadow-outline"
                         type="button"
+                        onClick={() => setShow(true)}
                     >
                         Register
                     </button>
+                    {show && <RegisterPopUp show={show} setShow={setShow} />}
                 </div>
 
             </div>
