@@ -1,6 +1,7 @@
 import './App.css'
-import RecipeComponent from './RecipeComponent'
-import Login from './Login';
+import Login from './components/Login';
+import Menu from './components/Menu';
+import { Route, Routes } from 'react-router-dom';
 
 const recipes = [
   {
@@ -19,9 +20,17 @@ const recipes = [
 
 function App() {
   return (
-    <section className='App'>
-      <Login />
-    </section>
+    <div className='App'>
+      <header className='App-header p-2'>
+        <Menu />
+      </header>
+      <div className='App-body'>
+        <Routes>
+          <Route path='/' element={<h1>Home</h1>} />
+          <Route path='/login' element={<h1>Login</h1>} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 

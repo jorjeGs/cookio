@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Modal.css";
-import LoadingButton from "./components/LoadingButton";
+import LoadingButton from "./LoadingButton";
 
 const RegisterPopUp = ({ show, setShow }) => {
     const [name, setName] = useState("");
