@@ -1,35 +1,26 @@
 import './App.css'
-import Login from './components/Login';
-import Menu from './components/Menu';
-import { Route, Routes } from 'react-router-dom';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
-const recipes = [
-  {
-    imgSrc: 'https://unavatar.io/facebook',
-    title: 'tortilla harina',
-    description: 'tortilla de harina muy rica',
-    initialIsLiked: true
-  },
-  {
-    imgSrc: 'https://unavatar.io/twitter',
-    title: 'tortilla maiz',
-    description: 'tortilla de maiz mas o menos',
-    initialIsLiked: false
-  }
-]
 
 function App() {
+
+  const [user, setUser] = useState(null);
+  console.log(user)
+
   return (
     <div className='App'>
-      <header className='App-header p-2'>
-        <Menu />
-      </header>
-      <div className='App-body'>
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<h1>Home</h1>} />
-          <Route path='/login' element={<h1>Login</h1>} />
+          <Route index element={<Login user={user} setUser={setUser} />} />
+          <Route path='/login' element={
+            user ? <Navigate to='/home' /> :  (<Login user={user} setUser={setUser} />)
+          } />
+          <Route path='/home' element={<Home user={user} />} />
         </Routes>
-      </div>
+      </BrowserRouter>
     </div>
   );
 }

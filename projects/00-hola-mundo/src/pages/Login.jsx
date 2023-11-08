@@ -1,9 +1,9 @@
 import './Login.css'
-import RegisterPopUp from './RegisterPopUp';
+import RegisterPopUp from '../components/RegisterPopUp';
 import { useState } from 'react'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({user, setUser}) => {
 
     //states and hooks for login
     const [email, setEmail] = useState('')
@@ -31,6 +31,11 @@ const Login = () => {
                     setEmail('')
                     setPassword('')
                     setMessage('user logged in')
+                    //set user state
+                    setUser(res.data)
+                    console.log("Bienvenida!" + res.data.data.name)
+                    console.log("token: " + res.data.token)
+                    //set token in local storage
                     //localStorage.setItem('token', resJson.token)
                     //history.push('/home')
                 }
@@ -50,7 +55,6 @@ const Login = () => {
             console.log(err)
         }
     }
-
 
     return (
         <div className="flex justify-between items-center h-screen">

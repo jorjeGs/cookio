@@ -1,0 +1,1 @@
+//component to authenticate the user before entering the home page or any other page
