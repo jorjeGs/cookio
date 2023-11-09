@@ -11,28 +11,30 @@ function onToggleMenu() {
     menu.classList.toggle('top-[14%]');
 }
 
+//handleLogout 
+
 const Menu = () => {
     return (
         <nav className='flex justify-between items-center w-[92%] mx-auto h-20'>
             <div className='logo'>
-                <a href='/'>
-                    <img className='w-16' src='https://unavatar.io/facebook' alt='logo' />
-                </a>
+                <Link to='/home'>                 
+                        <img className='w-16' src='https://unavatar.io/facebook' alt='logo' />
+                </Link>    
             </div>
             <div className='menu nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto md:opacity-100 opacity-100 w-full flex items-center px-5'>
                 <ul className='flex md:flex-row flex-col mx-auto md:items-center md:gap-[8vw] gap-8'>
                     <li>
-                        <Link to='/'>
+                        <Link to='feed'>
                             <HomeIcon fill='white' stroke="green" className='w-16 h-auto' />
                         </Link>
                     </li>
                     <li>
-                        <Link to='/login'>
+                        <Link to='search'>
                             <SearchIcon className='w-16 h-auto' />
                         </Link>
                     </li>
                     <li>
-                        <Link to='/#'>
+                        <Link to='profile'>
                             <UserIcon className='w-16 h-auto' />
                         </Link>
                     </li>

@@ -1,3 +1,8 @@
 .form-login{
     background-color: #584022;
 }
+
+.body{
+    display: grid;
+    place-content: center;
+}

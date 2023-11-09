@@ -20,6 +20,7 @@ const RegisterPopUp = ({ show, setShow }) => {
 
     //handle register
     const handleRegister = async () => {
+        event.preventDefault();
         if (!name || !email || !password || !username) {
             alert("Please fill all the fields");
             return;
@@ -54,6 +55,7 @@ const RegisterPopUp = ({ show, setShow }) => {
                 }
             });
         } catch (err) {
+            setLoading(false);
             console.log(err);
         }
 
