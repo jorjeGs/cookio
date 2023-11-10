@@ -5,11 +5,12 @@ import Feed from './pages/Feed';
 import SearchRecipe from './pages/SearchRecipe';
 import Account from './pages/Account';
 import ProtectRoute from './components/ProtectRoute';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { BrowserRouter, useNavigate, Route, Routes } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 //we can create a component who provides the user to all the components of the app instead of passing it as a prop 
-import { UserProvider, useUser } from './hooks/UserContext';
+import { UserContextProvider } from './context/UserContext';
+import { useEffect } from 'react';
+import useUser from './hooks/useUser';
 
 function App() {
   //state and hook for user
@@ -19,7 +20,7 @@ function App() {
    
   return (
     <div className='App'>
-      <UserProvider>
+      <UserContextProvider>
         <BrowserRouter>
           <Routes>
             <Route index element={<Login />} />
@@ -36,7 +37,7 @@ function App() {
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </UserProvider>
+      </UserContextProvider>
     </div>
   );
 }

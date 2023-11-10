@@ -2,12 +2,13 @@
 import React from 'react';
 //outlet is the component that renders the children of the route that is being protected by this component
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUser } from '../hooks/UserContext';
+import useUser from '../hooks/useUser';
+
 
 const ProtectRoute = ({ children, redirectTo='/' }) => {
-    const { user } = useUser();
+    const { isLogged } = useUser();
 
-    if(!user){
+    if(!isLogged){
         return <Navigate to={redirectTo} />
     }
     return children ? children : <Outlet />

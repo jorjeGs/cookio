@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom'
-import { useUser } from '../hooks/UserContext'
+import useUser from '../hooks/useUser'
 
 const Account = () => {
-    const { user } = useUser()
-    const username = user.name
     
+    const { user } = useUser()
+
     return (
 
         <>
             <div>
-                <h1>Account de {username} </h1>
+                <h1>Account de {user.data.name} </h1>
             </div>
             
             <Outlet />
