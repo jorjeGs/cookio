@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import { useUser } from '../hooks/UserContext';
+import useUser from '../hooks/useUser';
 
 const Feed = () => {
     const { user } = useUser();
-    const username = user.name;
+    
     return (
         <>
             <div>
-                <h1>Feed de {username}</h1>
+                <h1>Feed de {user.data.name}</h1>
             </div>
             <Outlet />
         </>

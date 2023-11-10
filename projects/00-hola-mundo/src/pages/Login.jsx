@@ -3,22 +3,18 @@ import RegisterPopUp from '../components/RegisterPopUp';
 import LoadingButton from '../components/LoadingButton';
 import { useState } from 'react'
 import axios from 'axios'
-import { useUser } from '../hooks/UserContext'
-import { Navigate, useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
+import useUser from '../hooks/useUser'
 
 
 const Login = () => {
 
-    const {user} = useUser()
-    const {setUser} = useUser()
+    const {login, user, isLogged} = useUser()    
+    const navigate = useNavigate()
 
-    const Navigate = useNavigate()
-
-    if(user){
-        return <Navigate to='/home' />
+    if(isLogged){
+        return <Navigate to='/home/feed' />
     }
-    console.log(user)
 
     //states and hooks for login
     const [email, setEmail] = useState('')
@@ -32,8 +28,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     //handle login
-    const handleLogin = async () => {
-        event.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
         if (!email || !password) {
             setMessage('Please fill all the fields')
@@ -52,20 +48,14 @@ const Login = () => {
                     setPassword('')
                     setMessage('user logged in')
                     //set user state
-                    setUser(res.data.data)
+                    login(res.data)
                     console.log(user)
-                    Navigate('/home')
+                    navigate("/home/feed")
                     console.log("Bienvenida!" + res.data.data.name)
                     console.log("token: " + res.data.token)
                     //redirect to home with react router
                     //set token in local storage
                     //localStorage.setItem('token', resJson.token)
-                    //history.push('/home')
-                }
-                else {
-                    setEmail('')
-                    setPassword('')
-                    setMessage('something went wrong')
                 }
             })
         }
