@@ -19,6 +19,8 @@ function onToggleMenu() {
 
     const handleLogout = (e) => {
         e.preventDefault();
+        //eliminate token from local storage
+        localStorage.removeItem('user');
         logout();
         navigate('/login');
     }; 

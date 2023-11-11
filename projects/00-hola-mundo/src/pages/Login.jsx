@@ -1,7 +1,7 @@
 import './Login.css'
 import RegisterPopUp from '../components/RegisterPopUp';
 import LoadingButton from '../components/LoadingButton';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import useUser from '../hooks/useUser'
@@ -9,12 +9,16 @@ import useUser from '../hooks/useUser'
 
 const Login = () => {
 
-    const {login, user, isLogged} = useUser()    
+    const { login, isLogged } = useUser()
     const navigate = useNavigate()
 
-    if(isLogged){
-        return <Navigate to='/home/feed' />
-    }
+    //if user is logged in redirect to home with useEffect hook because it is a side effect of the component mounting
+    //and is not part of the component rendering
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/home/feed')
+        }
+    }, [isLogged, navigate])
 
     //states and hooks for login
     const [email, setEmail] = useState('')
@@ -49,13 +53,9 @@ const Login = () => {
                     setMessage('user logged in')
                     //set user state
                     login(res.data)
-                    console.log(user)
                     navigate("/home/feed")
-                    console.log("Bienvenida!" + res.data.data.name)
-                    console.log("token: " + res.data.token)
-                    //redirect to home with react router
                     //set token in local storage
-                    //localStorage.setItem('token', resJson.token)
+                    localStorage.setItem('user', JSON.stringify(res.data))
                 }
             })
         }
