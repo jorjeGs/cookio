@@ -9,7 +9,7 @@ const Account = () => {
 
         <>
             <div>
-                <h1>Account de {user.data.name} </h1>
+                <h1>Account de {user.name} </h1>
             </div>
             
             <Outlet />

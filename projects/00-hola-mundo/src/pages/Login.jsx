@@ -1,7 +1,7 @@
 import './Login.css'
 import RegisterPopUp from '../components/RegisterPopUp';
 import LoadingButton from '../components/LoadingButton';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import useUser from '../hooks/useUser'
@@ -9,12 +9,16 @@ import useUser from '../hooks/useUser'
 
 const Login = () => {
 
-    const {login, user, isLogged} = useUser()    
+    const { login, isLogged } = useUser()
     const navigate = useNavigate()
 
-    if(isLogged){
-        return <Navigate to='/home/feed' />
-    }
+    //if user is logged in redirect to home with useEffect hook because it is a side effect of the component mounting
+    //and is not part of the component rendering
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/home/feed')
+        }
+    }, [isLogged, navigate])
 
     //states and hooks for login
     const [email, setEmail] = useState('')
@@ -38,10 +42,11 @@ const Login = () => {
         try {
             //set loading to true
             setLoading(true)
-            await axios.post('https://cookioapi.onrender.com/api/login', { email, password }).then((res) => {
+            //gettin url from .env file
+            const url = import.meta.env.VITE_API_URL
+            await axios.post(url + '/login', { email, password }).then((res) => {
                 //set loading to false
                 setLoading(false)
-                console.log(res)
                 setMessage(res.data.message)
                 if (res.status === 200) {
                     setEmail('')
@@ -49,13 +54,7 @@ const Login = () => {
                     setMessage('user logged in')
                     //set user state
                     login(res.data)
-                    console.log(user)
                     navigate("/home/feed")
-                    console.log("Bienvenida!" + res.data.data.name)
-                    console.log("token: " + res.data.token)
-                    //redirect to home with react router
-                    //set token in local storage
-                    //localStorage.setItem('token', resJson.token)
                 }
             })
         }
@@ -63,10 +62,8 @@ const Login = () => {
             setLoading(false);
             if (err.response) {
                 console.log(err.response.data)
-                console.log(err.response.status)
                 setMessage(err.response.data.message)
             } else {
-                console.log('Error')
                 setMessage('something went wrong with the server')
             }
         }
