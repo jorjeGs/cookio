@@ -6,7 +6,7 @@ const SearchRecipe = () => {
     return (
         <>
             <div>
-                <h1>SearchRecipe de {user.data.name} </h1>
+                <h1>SearchRecipe de {user.name} </h1>
             </div>
 
             <Outlet />
