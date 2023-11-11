@@ -42,10 +42,11 @@ const Login = () => {
         try {
             //set loading to true
             setLoading(true)
-            await axios.post('https://cookioapi.onrender.com/api/login', { email, password }).then((res) => {
+            //gettin url from .env file
+            const url = import.meta.env.VITE_API_URL
+            await axios.post(url + '/login', { email, password }).then((res) => {
                 //set loading to false
                 setLoading(false)
-                console.log(res)
                 setMessage(res.data.message)
                 if (res.status === 200) {
                     setEmail('')
@@ -54,8 +55,6 @@ const Login = () => {
                     //set user state
                     login(res.data)
                     navigate("/home/feed")
-                    //set token in local storage
-                    localStorage.setItem('user', JSON.stringify(res.data))
                 }
             })
         }
@@ -63,10 +62,8 @@ const Login = () => {
             setLoading(false);
             if (err.response) {
                 console.log(err.response.data)
-                console.log(err.response.status)
                 setMessage(err.response.data.message)
             } else {
-                console.log('Error')
                 setMessage('something went wrong with the server')
             }
         }

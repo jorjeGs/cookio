@@ -21,6 +21,7 @@ function onToggleMenu() {
         e.preventDefault();
         //eliminate token from local storage
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         logout();
         navigate('/login');
     }; 

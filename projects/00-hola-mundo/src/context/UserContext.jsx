@@ -8,6 +8,8 @@ export function UserContextProvider({children}) {
     //state is being initialized with an arrow function because it is a side effect of the component mounting
     //and is not part of the component rendering, this way we avoid the state to be initialized every time the component renders
     const [user, setUser] = useState(() => {
+        //we parse the string to JSON because local storage only stores strings
+        //and we need to parse it to JSON to be able to use it as an object
         return JSON.parse(localStorage.getItem('user')) || null
     });
 
