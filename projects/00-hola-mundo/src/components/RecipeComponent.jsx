@@ -1,7 +1,7 @@
 import './RecipeComponent.css';
 import { useState } from 'react';
 
-const RecipeComponent = ({ imgSrc, title, description, initialIsLiked }) => {
+const RecipeComponent = ({ imgSrc='https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg' , title, description, initialIsLiked }) => {
 
     //destructuring the props for the state
     // this is called internal state
