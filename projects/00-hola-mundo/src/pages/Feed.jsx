@@ -20,7 +20,6 @@ const Feed = () => {
             //get url from .env file
             const url = import.meta.env.VITE_API_URL
             const response = await axios.get( url + '/recipes').then((response) => {
-                console.log(response.data);
                 setRecipes(response.data);
             })
                 .catch((error) => {
@@ -32,9 +31,13 @@ const Feed = () => {
 
     return (
         <>
-            <div className='feed-container'>
-                
-                <div className="recipes-container mt-5">
+            <div className='feed-container flex mt-5'>
+                <div className='feed-buttons-container flex flex-col w-1/3 '>
+                    <button className='feed-button'>All</button>
+                    <button className='feed-button'>Liked</button>
+                    <button className='feed-button'>My Recipes</button>
+                </div>
+                <div className="recipes-container flex flex-col w-1/3 justify-center items-center">
                     {
                         //if recipes is null show loading
                         recipes === null ? <p className='text-white'>Loading...</p> :
@@ -48,6 +51,11 @@ const Feed = () => {
                             );
                         })
                     }
+                </div>
+                <div className='feed-buttons-container flex flex-col w-1/3'>
+                    <button className='feed-button'>All</button>
+                    <button className='feed-button'>Liked</button>
+                    <button className='feed-button'>My Recipes</button>
                 </div>
             </div>
             <Outlet />

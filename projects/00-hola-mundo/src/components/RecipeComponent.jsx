@@ -17,11 +17,14 @@ const RecipeComponent = ({ imgSrc='https://images.pexels.com/photos/45202/browni
     }
 
     return (
-        <div className="recipe-card">
-            <img src={imgSrc} alt={title} className='recipe-image' />
+        <div className="recipe-card w-auto max-h-96 px-20 rounded-2xl">
+            <img src={imgSrc} alt={title} className='recipe-card-img flex-row- w-auto' />
+            <div className='flex flex-col justify-between content-center'>
             <h2 className='recipe-title'>{title}</h2>
-            <p className='recipe-description'>{description}</p>
-            <div className="button-container">
+            <p className='text-white'>By: <span className='text-blue-500'>User</span></p>
+            </div>
+            <p className='recipe-description flex-row'>{description}</p>
+            <div className="button-container flex-row">
                 <button className={buttonClass} onClick={handleClick} >
                     <span className='likeText'>{likeText}</span>
                     <span className='dislike'>Dislike</span>
