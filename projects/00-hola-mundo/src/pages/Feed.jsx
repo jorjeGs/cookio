@@ -4,6 +4,8 @@ import axios from 'axios';
 import useUser from '../hooks/useUser';
 import RecipeComponent from '../components/RecipeComponent';
 import './Feed.css';
+import { BiSolidBookHeart } from "react-icons/bi";
+import { FaSearch, FaUser } from "react-icons/fa";
 
 const Feed = () => {
     //user state from useUser hook to check if user is logged in
@@ -12,32 +14,85 @@ const Feed = () => {
     //and check if the recipe is in the user liked recipes array
     //then we can pass the liked state to the RecipeComponent
     const { user } = useUser();
-    const [recipes, setRecipes] = useState(null);
+
+    //sample recipes for testing
+    const recipes = [
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: true
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: false
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: true
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: false
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: true
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: false
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: true
+        },
+        {
+            title: 'Brownie',
+            description: 'Chocolate brownie',
+            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+            isLiked: false
+        },
+    ];
+
+    // const [recipes, setRecipes] = useState(null);
    
-    useEffect(() => {
-        //this function can be loaded from a service file or from a hook
-        const getRecipes = async () => {
-            //get url from .env file
-            const url = import.meta.env.VITE_API_URL
-            const response = await axios.get( url + '/recipes').then((response) => {
-                setRecipes(response.data);
-            })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
-        getRecipes();
-    }, [setRecipes]);
+    // useEffect(() => {
+    //     this function can be loaded from a service file or from a hook
+    //     const getRecipes = async () => {
+    //         get url from .env file
+    //         const url = import.meta.env.VITE_API_URL
+    //         const response = await axios.get( url + '/recipes').then((response) => {
+    //             setRecipes(response.data);
+    //         })
+    //             .catch((error) => {
+    //                 console.log(error);
+    //             });
+    //     }
+    //     getRecipes();
+    // }, [setRecipes]);
 
     return (
         <>
-            <div className='feed-container flex mt-5'>
-                <div className='feed-buttons-container flex flex-col w-1/3 '>
-                    <button className='feed-button'>All</button>
-                    <button className='feed-button'>Liked</button>
-                    <button className='feed-button'>My Recipes</button>
+            <div className='flex w-full mt-5'>
+                <div className='feed-buttons-container xl:w-1/3 xl:flex xl:flex-col xl:h-fit xl:justify-center xl:gap-5 hidden'>
+                    <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><BiSolidBookHeart className='misRecetasIcon w-20 h-auto ml-8 text-yellow-500'/><h1 className=' text-white w-2/3 text-4xl mx-3'><strong><i>Mis Recetas</i></strong></h1></button>
+                    <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaSearch className='busquedaIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Buscar</i></strong></h1></button>
+                    <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaUser className='usuarioIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Cuenta</i></strong></h1></button>
                 </div>
-                <div className="recipes-container flex flex-col w-1/3 justify-center items-center">
+                <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col justify-center gap-7 w-full">
                     {
                         //if recipes is null show loading
                         recipes === null ? <p className='text-white'>Loading...</p> :
@@ -52,10 +107,8 @@ const Feed = () => {
                         })
                     }
                 </div>
-                <div className='feed-buttons-container flex flex-col w-1/3'>
-                    <button className='feed-button'>All</button>
-                    <button className='feed-button'>Liked</button>
-                    <button className='feed-button'>My Recipes</button>
+                <div className='feed-buttons-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col sm:h-fit hidden'>
+                    
                 </div>
             </div>
             <Outlet />

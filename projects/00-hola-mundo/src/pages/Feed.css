@@ -1,5 +1,28 @@
-.recipes-container {
-    display: grid;
-    flex-direction: column;
-    gap: 16px;
+.feed-button{
+    background-color: #584022;
+}
+
+.feed-button:hover{
+    background-color: #EAB308;
+    transition-duration: 200ms;
+}
+
+.feed-button:hover h1{
+    color: black;
+    transition-duration: 200ms;
+}
+
+.feed-button:hover .misRecetasIcon{
+    color: black;
+    transition-duration: 200ms;
+}
+
+.feed-button:hover .busquedaIcon{
+    color: black;
+    transition-duration: 200ms;
+}
+
+.feed-button:hover .usuarioIcon{
+    color: black;
+    transition-duration: 200ms;
 }

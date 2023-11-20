@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HomeIcon from '../assets/home.svg?react';
-import SearchIcon from '../assets/search.svg?react';
-import UserIcon from '../assets/user.svg?react';
-import ShutDownIcon from '../assets/shutdown.svg?react';
-import MenuIcon from '../assets/menu.svg?react';
 import useUser from '../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
+import { FaSearch, FaUser, FaBars } from "react-icons/fa";
+import { GrPowerShutdown } from "react-icons/gr";
+import { BiSolidBookHeart } from "react-icons/bi";
+
 
 function onToggleMenu() {
     const menu = document.querySelector('.nav-links');
@@ -28,36 +27,36 @@ function onToggleMenu() {
 
     return (
         <nav className='flex justify-between items-center w-[92%] mx-auto h-20'>
-            <div className='logo'>
+            <div className='logo justify-center'>
                 <Link to='/home/feed'>                 
-                        <img className='w-16' src='https://unavatar.io/facebook' alt='logo' />
+                        <h1 className='text-yellow-500 text-5xl'><strong><i>Cookio</i></strong></h1>
                 </Link>    
             </div>
-            <div className='menu nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto md:opacity-100 opacity-100 w-full flex items-center px-5'>
+            <div className='menu nav-links duration-500 md:hidden md:static absolute md:min-h-fit min-h-[40vh] left-0 top-[-100%] md:w-auto md:opacity-100 opacity-100 w-full flex items-center'>
                 <ul className='flex md:flex-row flex-col mx-auto md:items-center md:gap-[8vw] gap-8'>
                     <li>
                         <Link to='feed'>
-                            <HomeIcon fill='white' stroke="green" className='w-16 h-auto' />
+                            <BiSolidBookHeart className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>
                     <li>
                         <Link to='search'>
-                            <SearchIcon className='w-16 h-auto' />
+                            <FaSearch className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>
                     <li>
                         <Link to='profile'>
-                            <UserIcon className='w-16 h-auto' />
+                            <FaUser className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>
                 </ul>
             </div>
             <div className='user flex items-center gap-6'>
                 <button onClick={handleLogout} >
-                    <ShutDownIcon className='w-16 h-auto' />
+                    <GrPowerShutdown className='w-16 h-auto text-white border-black hover:text-yellow-500' />
                 </button>
                 <button onClick={onToggleMenu} className='md:hidden block'>
-                    <MenuIcon className='w-16 h-auto' />
+                    <FaBars className='w-16 h-auto text-white border-black hover:text-yellow-500' />
                 </button>
             </div>
         </nav>
