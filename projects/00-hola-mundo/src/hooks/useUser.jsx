@@ -9,9 +9,6 @@ export default function useUser () {
         //login logic
         const token = user.token;
         const data = user.data;
-        console.log(data);
-        console.log(token);
-        console.log('hi')
 
         //set token and user data in local storage (hybrid storage)
         //we save the user data as a string because local storage only stores strings

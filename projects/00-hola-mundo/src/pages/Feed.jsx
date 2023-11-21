@@ -27,7 +27,7 @@ const Feed = () => {
             title: 'Brownie',
             description: 'Chocolate brownie',
             imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            isLiked: false
+            isLiked: true
         },
         {
             title: 'Brownie',
@@ -39,31 +39,7 @@ const Feed = () => {
             title: 'Brownie',
             description: 'Chocolate brownie',
             imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            isLiked: false
-        },
-        {
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
             isLiked: true
-        },
-        {
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            isLiked: false
-        },
-        {
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            isLiked: true
-        },
-        {
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            isLiked: false
         },
     ];
 
@@ -86,13 +62,13 @@ const Feed = () => {
 
     return (
         <>
-            <div className='flex w-full mt-5'>
+            <div className='flex w-full mt-5 h-full'>
                 <div className='feed-buttons-container xl:w-1/3 xl:flex xl:flex-col xl:h-fit xl:justify-center xl:gap-5 hidden'>
                     <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><BiSolidBookHeart className='misRecetasIcon w-20 h-auto ml-8 text-yellow-500'/><h1 className=' text-white w-2/3 text-4xl mx-3'><strong><i>Mis Recetas</i></strong></h1></button>
                     <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaSearch className='busquedaIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Buscar</i></strong></h1></button>
                     <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaUser className='usuarioIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Cuenta</i></strong></h1></button>
                 </div>
-                <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col justify-center gap-7 w-full">
+                <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col gap-7 w-full overflow-y-scroll h-screen no-scrollbar">
                     {
                         //if recipes is null show loading
                         recipes === null ? <p className='text-white'>Loading...</p> :

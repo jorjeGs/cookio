@@ -26,7 +26,7 @@ function onToggleMenu() {
     }; 
 
     return (
-        <nav className='flex justify-between items-center w-[92%] mx-auto h-20'>
+        <nav className='flex justify-between items-center w-[92%] mx-auto h-20 '>
             <div className='logo justify-center'>
                 <Link to='/home/feed'>                 
                         <h1 className='text-yellow-500 text-5xl'><strong><i>Cookio</i></strong></h1>
