@@ -26,3 +26,11 @@
     color: black;
     transition-duration: 200ms;
 }
+
+/* scrolling recipes */
+
+.recipes-container {
+    height: calc(100vh - 160px);
+    /* Otras propiedades */
+    overflow-y: scroll; /* Habilita el scroll vertical */
+} 

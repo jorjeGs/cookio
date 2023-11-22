@@ -35,7 +35,7 @@ function onToggleMenu() {
             <div className='menu nav-links duration-500 md:hidden md:static absolute md:min-h-fit min-h-[40vh] left-0 top-[-100%] md:w-auto md:opacity-100 opacity-100 w-full flex items-center'>
                 <ul className='flex md:flex-row flex-col mx-auto md:items-center md:gap-[8vw] gap-8'>
                     <li>
-                        <Link to='feed'>
+                        <Link to='/home/recipes'>
                             <BiSolidBookHeart className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>
