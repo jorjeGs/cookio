@@ -6,6 +6,7 @@ import RecipeComponent from '../components/RecipeComponent';
 import './Feed.css';
 import { BiSolidBookHeart } from "react-icons/bi";
 import { FaSearch, FaUser } from "react-icons/fa";
+import { getAllRecipes } from "../services/recipeService";
 
 const Feed = () => {
     //user state from useUser hook to check if user is logged in
@@ -13,60 +14,64 @@ const Feed = () => {
     //to get if the recipe is liked or not we need to make a call to the API
     //and check if the recipe is in the user liked recipes array
     //then we can pass the liked state to the RecipeComponent
-    const { user } = useUser();
+    const { user, getUserLikes, userLikes } = useUser();
 
     //sample recipes for testing
-    const recipes = [
-        {
-            id: 1,
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            initialIsLiked: false,
-            likes: 5
-        },
-        {
-            id: 2,
-            title: 'Quesadillas',
-            description: 'With meat and vegetables',
-            imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
-            initialIsLiked: true,
-            likes: 10
-        },
-        {
-            id: 3,
-            title: 'Brownie',
-            description: 'Chocolate brownie',
-            imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-            initialIsLiked: false,
-            likes: 5
-        },
-        {
-            id: 4,
-            title: 'Quesadillas',
-            description: 'With meat and vegetables',
-            imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
-            initialIsLiked: true,
-            likes: 10
-        },
-    ];
+    //now, we can use the service function to get all the recipes and save them in "recipes"
+    // const recipes = [
+    //     {
+    //         id: 1,
+    //         title: 'Brownie',
+    //         description: 'Chocolate brownie',
+    //         imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+    //         initialIsLiked: false,
+    //         likes: 5
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Quesadillas',
+    //         description: 'With meat and vegetables',
+    //         imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
+    //         initialIsLiked: true,
+    //         likes: 10
+    //     },
+    //     {
+    //         id: 3,
+    //         title: 'Brownie',
+    //         description: 'Chocolate brownie',
+    //         imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
+    //         initialIsLiked: false,
+    //         likes: 5
+    //     },
+    //     {
+    //         id: 4,
+    //         title: 'Quesadillas',
+    //         description: 'With meat and vegetables',
+    //         imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
+    //         initialIsLiked: true,
+    //         likes: 10
+    //     },
+    // ];
 
-    // const [recipes, setRecipes] = useState(null);
+    const [recipes, setRecipes] = useState(null);
    
-    // useEffect(() => {
-    //     this function can be loaded from a service file or from a hook
-    //     const getRecipes = async () => {
-    //         get url from .env file
-    //         const url = import.meta.env.VITE_API_URL
-    //         const response = await axios.get( url + '/recipes').then((response) => {
-    //             setRecipes(response.data);
-    //         })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //             });
-    //     }
-    //     getRecipes();
-    // }, [setRecipes]);
+    useEffect(() => {
+        //get user likes from function service getUserLikes
+        const getUserLikes = async () => {
+            await getUserLikes(user);
+            console.log(userLikes);
+        };
+
+        //get recipes from function service getAllRecipes
+        const getRecipes = async () => {
+            await getAllRecipes().then((response) => {
+                console.log(response);
+                setRecipes(response);
+                console.log(recipes);
+            })
+        };
+        getRecipes();
+    }, [setRecipes]);
 
     return (
         <>
@@ -94,8 +99,7 @@ const Feed = () => {
                                     title={recipe.title}
                                     description={recipe.description}
                                     imgSrc={recipe.imgSrc}
-                                    initialIsLiked={recipe.initialIsLiked}
-                                    likes={recipe.likes}
+                                    initialLikes={recipe.likes}
                                 />
                             );
                         })

@@ -1,11 +1,10 @@
 import './RecipeComponent.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaHeart, FaPlus } from "react-icons/fa";
-import { likeRecipe, unlikeRecipe } from '../services/likeService';
 import useUser from '../hooks/useUser';
 
 
-const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked, likes }) => {
+const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked, initialLikes }) => {
 
     
     //TO DO
@@ -13,36 +12,44 @@ const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked
     //to initialize the liked state we need to check if the recipe is in the user liked recipes array   
     //first, we need to create the hook from the user context
     //then we get the array from the useLikes hook
-    //then we check if the recipe id is in the array
+    //then we check if the recipe id is in the array userLikes
     //if it is, we set the initialIsLiked state to true
     //else we set it to false
 
 
-    const [liked, setLiked] = useState(initialIsLiked);
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(initialLikes);
 
     //get the user id from the user provider
-    const { user } = useUser();
-    const userId = user.id;
+    const { user, addLike, disLike, userLikes } = useUser();
 
+    //check in useEffect if the recipe is in the userLikes array
+    //if it is, set the initialIsLiked state to true
+    //else set it to false
+    useEffect(() => {
+        if (userLikes.includes(recipeId)) {
+            setLiked(true);
+        } else {
+            setLiked(false);
+        }
+        console.log(userLikes);
+    }, [userLikes, recipeId]);
 
     //function to handle the like button
     const handleLike = () => {
         //if the recipe is liked we call the unlikeRecipe function
         //else we call the likeRecipe function
         if (liked) {
-            unlikeRecipe(recipeId,userId);
+            disLike({recipeId});
+            setLikes(likes - 1);
         } else {
-            likeRecipe(recipeId,userId);
+            addLike({recipeId});
+            setLikes(likes + 1);
         }
-        //change the state of the liked button
-        setLiked(!liked);
     };
-
-
 
     //text for the like button if it is liked or not
     const likeStyle = liked ? 'text-yellow-500' : 'text-white hover:text-yellow-500';
-    const buttonClass = liked ? 'like-button liked' : 'like-button';
 
     //on click we change the state of the liked button
     return (

@@ -8,7 +8,7 @@ import { BiSolidBookHeart } from "react-icons/bi";
 import { FaSearch, FaUser } from "react-icons/fa";
 
 const MyRecipes = () => {
-    //by userprovider to get liked recipes
+    //by userprovider to get liked recipes,
     const { user } = useUser();
 
     //sample recipes for testing

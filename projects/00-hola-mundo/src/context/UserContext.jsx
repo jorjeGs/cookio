@@ -18,8 +18,14 @@ export function UserContextProvider({children}) {
         return JSON.parse(localStorage.getItem('token')) || null
     });
 
+    //we can also add an state for the user likes
+    const [userLikes, setUserLikes] = useState([]);
+
+    //state for user recipes
+    const [userRecipes, setUserRecipes] = useState([]);
+
     //then, send it to the provider
-    return <Context.Provider value={{user, setUser, token, setToken }}>
+    return <Context.Provider value={{user, setUser, token, setToken, userLikes, setUserLikes, userRecipes, setUserRecipes }}>
         {children}
     </Context.Provider>
 }
