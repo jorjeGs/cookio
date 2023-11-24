@@ -5,19 +5,9 @@ import useUser from '../hooks/useUser';
 
 
 const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked, initialLikes }) => {
-
-    
-    //TO DO
-    //leaving all the primary like functionality, now we will use a new hook to get the id of the liked recipes
-    //to initialize the liked state we need to check if the recipe is in the user liked recipes array   
-    //first, we need to create the hook from the user context
-    //then we get the array from the useLikes hook
-    //then we check if the recipe id is in the array userLikes
-    //if it is, we set the initialIsLiked state to true
-    //else we set it to false
-
-
+    //state to check if the recipe is liked or not
     const [liked, setLiked] = useState(false);
+    //state to save the number of likes
     const [likes, setLikes] = useState(initialLikes);
 
     //get the user id from the user provider
@@ -27,12 +17,20 @@ const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked
     //if it is, set the initialIsLiked state to true
     //else set it to false
     useEffect(() => {
-        if (userLikes.includes(recipeId)) {
-            setLiked(true);
+        //check if the userlikes array is not empty
+        //if it is not empty, check if the recipeId is in the array
+        //if it is, set the initialIsLiked state to true
+        //else set it to false
+        if (userLikes.length > 0) {
+            const isLiked = userLikes.some(like => like === recipeId);
+            if (isLiked) {
+                setLiked(true);
+            } else {
+                setLiked(false);
+            }
         } else {
             setLiked(false);
         }
-        console.log(userLikes);
     }, [userLikes, recipeId]);
 
     //function to handle the like button

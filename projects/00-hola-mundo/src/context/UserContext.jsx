@@ -19,6 +19,8 @@ export function UserContextProvider({children}) {
     });
 
     //we can also add an state for the user likes
+    //some people initialize the state with useEffect, but it is not recommended because it is a side effect
+    //and it is not part of the component rendering and it can cause problems with the component lifecycle
     const [userLikes, setUserLikes] = useState([]);
 
     //state for user recipes
