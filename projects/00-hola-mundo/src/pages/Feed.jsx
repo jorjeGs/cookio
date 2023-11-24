@@ -7,6 +7,7 @@ import './Feed.css';
 import { BiSolidBookHeart } from "react-icons/bi";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { getAllRecipes } from "../services/recipeService";
+import UserCard from '../components/UserCard';
 
 const Feed = () => {
     //user state from useUser hook to check if user is logged in
@@ -75,7 +76,7 @@ const Feed = () => {
         <>
             <div className='flex w-full mt-5 h-full'>
                 <div className='feed-buttons-container xl:w-1/3 xl:flex xl:flex-col xl:h-fit xl:justify-center xl:gap-5 hidden'>
-
+                    <UserCard name={user.name} imgSrc={"https://i.pinimg.com/736x/b9/23/e3/b923e3546251621205662f3cbd1cb402.jpg"} likes={user.likes} />
                 </div>
                 <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col gap-7 w-full no-scrollbar">
                     {
