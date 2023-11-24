@@ -70,12 +70,12 @@ const Login = () => {
     }
 
     return (
-        <div className="flex justify-between items-center h-screen px-8">
-            <div className='w-1/2'>
+        <div className="flex md:flex-row md:justify-between justify-center items-center h-screen px-8 flex-col">
+            <div className='md:w-1/2'>
                 <h1 className='text-9xl text-amber-400 font-bold text-center'>Cookio</h1>
                 <h2 className='text-2xl text-white font-bold text-center mt-4'>Discover, share and prepare delicious recipes on your own way</h2>
             </div>
-            <div className='w-1/2'>
+            <div className='md:w-1/2 md:mt-0 mt-16'>
                 <div className="form-login p-8 rounded shadow-md w-96 mx-auto">
                     <form onSubmit={handleLogin}>
                         <div className="mb-4">

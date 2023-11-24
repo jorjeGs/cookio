@@ -18,8 +18,16 @@ export function UserContextProvider({children}) {
         return JSON.parse(localStorage.getItem('token')) || null
     });
 
+    //we can also add an state for the user likes
+    //some people initialize the state with useEffect, but it is not recommended because it is a side effect
+    //and it is not part of the component rendering and it can cause problems with the component lifecycle
+    const [userLikes, setUserLikes] = useState([]);
+
+    //state for user recipes
+    const [userRecipes, setUserRecipes] = useState([]);
+
     //then, send it to the provider
-    return <Context.Provider value={{user, setUser, token, setToken }}>
+    return <Context.Provider value={{user, setUser, token, setToken, userLikes, setUserLikes, userRecipes, setUserRecipes }}>
         {children}
     </Context.Provider>
 }
