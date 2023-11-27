@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from '../components/Menu';
 import Feed from './Feed';
 import MyRecipes from './MyRecipes';
-import SearchRecipe from './SearchRecipe';
+import CreateRecipe from './CreateRecipe';
 import Account from './Account';
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
           <Route path='/' element={<Navigate to='/home/feed' />} />
           <Route path='feed' element={<Feed />} />
           <Route path='recipes' element={<MyRecipes />} />
-          <Route path='create' element={<SearchRecipe />} />
+          <Route path='create' element={<CreateRecipe />} />
           <Route path='profile' element={<Account />} />
         </Routes>
       </div>

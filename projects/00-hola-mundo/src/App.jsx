@@ -2,7 +2,7 @@ import './App.css'
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Feed from './pages/Feed';
-import SearchRecipe from './pages/SearchRecipe';
+import CreateRecipe from './pages/CreateRecipe';
 import Account from './pages/Account';
 import ProtectRoute from './components/ProtectRoute';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -23,7 +23,7 @@ function App() {
               <Route path='home/*' element={<Home />}>
                 <Route index element={<Feed />} />
                 <Route path='feed' element={<Feed />} />
-                <Route path='search' element={<SearchRecipe />} />
+                <Route path='create' element={<CreateRecipe />} />
                 <Route path='profile' element={<Account />} />
                 <Route path='*' element={<NotFound />} />
               </Route> 
