@@ -1,7 +1,6 @@
 import Context from "../context/UserContext";
 import { useCallback, useContext } from "react";
 import { likeRecipe, unlikeRecipe, getLikes } from '../services/likeService';
-import { getUserRecipes } from "../services/recipeService";
 
 export default function useUser() {
     const { user, setUser, token, setToken, userLikes, setUserLikes, userRecipes, setUserRecipes } = useContext(Context);

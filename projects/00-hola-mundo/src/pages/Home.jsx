@@ -18,7 +18,7 @@ const Home = () => {
           <Route path='/' element={<Navigate to='/home/feed' />} />
           <Route path='feed' element={<Feed />} />
           <Route path='recipes' element={<MyRecipes />} />
-          <Route path='search' element={<SearchRecipe />} />
+          <Route path='create' element={<SearchRecipe />} />
           <Route path='profile' element={<Account />} />
         </Routes>
       </div>

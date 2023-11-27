@@ -1,10 +1,10 @@
 import './RecipeComponent.css';
 import { useState, useEffect } from 'react';
-import { FaHeart, FaPlus } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import useUser from '../hooks/useUser';
 
 
-const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked, initialLikes }) => {
+const RecipeComponent = ({ recipeId, imgSrc , title, description, initialLikes, created_by }) => {
     //state to check if the recipe is liked or not
     const [liked, setLiked] = useState(false);
     //state to save the number of likes
@@ -57,19 +57,13 @@ const RecipeComponent = ({ recipeId, imgSrc , title, description, initialIsLiked
             </div>
             <div className='flex flex-row justify-center items-center w-full mt-3'>
             <h2 className='recipe-title w-2/3 ml-8 text-yellow-500 text-4xl'><strong>{title}</strong></h2>
-            <p className='text-white w-1/3 text-xl'><strong>By: Silene</strong></p>
+            <p className='text-white w-1/3 text-xl'><strong>By: {created_by}</strong></p>
             </div>
             <p className='recipe-description flex flex-row ml-8 mt-3 text-white items-center text-xl'>{description}</p>
             <div className="button-container flex flex-row mt-3 justify-between w-full items-center mb-3 text-3xl">
-                <div className='w-1/3 flex justify-center items-center gap-3'>
+                <div className='w-full flex justify-center items-center gap-3'>
                     <button className="Like-button" onClick={handleLike} ><FaHeart className={likeStyle} /></button>
                     <p className='text-white text-2xl'><strong>{likes}</strong></p>
-                </div>
-                <div className='w-1/3 flex justify-center items-center'>
-                    <button className="text-white hover:text-yellow-500">Comment</button>
-                </div>
-                <div className='w-1/3 flex justify-center items-center'>
-                    <button className="add-button text-white hover:text-yellow-500"><FaPlus /></button>
                 </div>
             </div>
         </div>

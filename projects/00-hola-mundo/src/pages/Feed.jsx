@@ -1,11 +1,10 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import useUser from '../hooks/useUser';
 import RecipeComponent from '../components/RecipeComponent';
 import './Feed.css';
 import { BiSolidBookHeart } from "react-icons/bi";
-import { FaSearch, FaUser } from "react-icons/fa";
+import { FaUser, FaPlus } from "react-icons/fa";
 import { getAllRecipes } from "../services/recipeService";
 import UserCard from '../components/UserCard';
 
@@ -17,44 +16,8 @@ const Feed = () => {
     //then we can pass the liked state to the RecipeComponent
     const { user, getUserLikes, userLikes } = useUser();
 
-    //sample recipes for testing
-    //now, we can use the service function to get all the recipes and save them in "recipes"
-    // const recipes = [
-    //     {
-    //         id: 1,
-    //         title: 'Brownie',
-    //         description: 'Chocolate brownie',
-    //         imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-    //         initialIsLiked: false,
-    //         likes: 5
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Quesadillas',
-    //         description: 'With meat and vegetables',
-    //         imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
-    //         initialIsLiked: true,
-    //         likes: 10
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'Brownie',
-    //         description: 'Chocolate brownie',
-    //         imgSrc: 'https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg',
-    //         initialIsLiked: false,
-    //         likes: 5
-    //     },
-    //     {
-    //         id: 4,
-    //         title: 'Quesadillas',
-    //         description: 'With meat and vegetables',
-    //         imgSrc: 'https://mandolina.co/wp-content/uploads/2023/06/quesadilla.png',
-    //         initialIsLiked: true,
-    //         likes: 10
-    //     },
-    // ];
-
     const [recipes, setRecipes] = useState(null);
+    const url = import.meta.env.VITE_API_URL
 
     useEffect(() => {
         //get user likes from function service getUserLikes
@@ -76,7 +39,7 @@ const Feed = () => {
         <>
             <div className='flex w-full mt-5 h-full'>
                 <div className='feed-buttons-container xl:w-1/3 xl:flex xl:flex-col xl:h-fit xl:justify-center xl:gap-5 hidden'>
-                    <UserCard name={user.name} imgSrc={"https://i.pinimg.com/736x/b9/23/e3/b923e3546251621205662f3cbd1cb402.jpg"} likes={user.likes} />
+                    <UserCard name={user.username} imgSrc={url + '/users/images/' + user.profile_pic} likes={user.likes} />
                 </div>
                 <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col gap-7 w-full no-scrollbar">
                     {
@@ -89,8 +52,9 @@ const Feed = () => {
                                         recipeId={recipe.id}
                                         title={recipe.title}
                                         description={recipe.description}
-                                        imgSrc={recipe.imgSrc}
+                                        imgSrc={`${url}/recipes/images/${recipe.image}`}
                                         initialLikes={recipe.likes}
+                                        created_by={recipe.created_by}
                                     />
                                 );
                             })
@@ -100,8 +64,8 @@ const Feed = () => {
                     <Link to='/home/recipes'>
                         <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><BiSolidBookHeart className='misRecetasIcon w-20 h-auto ml-8 text-yellow-500' /><h1 className=' text-white w-2/3 text-4xl mx-3'><strong><i>Mis Recetas</i></strong></h1></button>
                     </Link>
-                    <Link to='/home/search'>
-                        <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaSearch className='busquedaIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Buscar</i></strong></h1></button>
+                    <Link to='/home/create'>
+                        <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaPlus className='busquedaIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Crear</i></strong></h1></button>
                     </Link>
                     <Link to='/home/profile'>
                         <button className='feed-button flex flex-row w-3/4 mx-auto p-2 items-center justify-center rounded-2xl'><FaUser className='usuarioIcon w-20 h-auto  ml-8 text-yellow-500' /><h1 className=' text-white text-4xl w-2/3 mx-3'><strong><i>Cuenta</i></strong></h1></button>

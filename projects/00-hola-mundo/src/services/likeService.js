@@ -1,7 +1,5 @@
 import axios from 'axios';
-// const url = import.meta.env.VITE_API_URL;
-//test url for local host
-const url = 'http://localhost:3000/api';
+const url = import.meta.env.VITE_API_URL;
 
 export const likeRecipe = async (recipeId, userId) => {
     //call to the API with axios with url from dotenv

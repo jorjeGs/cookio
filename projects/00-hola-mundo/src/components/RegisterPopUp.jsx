@@ -29,7 +29,8 @@ const RegisterPopUp = ({ show, setShow }) => {
             //set loading to true
             setLoading(true);
             //fix axios response
-            await axios.post("https://cookioapi.onrender.com/api/register", {username, name, email, password}).then((res) => {
+            const url = import.meta.env.VITE_API_URL
+            await axios.post(url + '/register', {username, name, email, password}).then((res) => {
                 setLoading(false);
                 setShow(false);
                 console.log(res);

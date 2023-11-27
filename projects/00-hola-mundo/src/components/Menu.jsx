@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import { FaSearch, FaUser, FaBars } from "react-icons/fa";
+import { FaPlus, FaUser, FaBars } from "react-icons/fa";
 import { GrPowerShutdown } from "react-icons/gr";
 import { BiSolidBookHeart } from "react-icons/bi";
 
@@ -40,12 +40,12 @@ function onToggleMenu() {
                         </Link>
                     </li>
                     <li>
-                        <Link to='search'>
-                            <FaSearch className='w-16 h-auto text-yellow-500' />
+                        <Link to='/home/create'>
+                            <FaPlus className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>
                     <li>
-                        <Link to='profile'>
+                        <Link to='/home/profile'>
                             <FaUser className='w-16 h-auto text-yellow-500' />
                         </Link>
                     </li>

@@ -1,7 +1,5 @@
 import axios from "axios";
-// const url = import.meta.env.VITE_API_URL;
-//test url for local host
-const url = 'http://localhost:3000/api';
+const url = import.meta.env.VITE_API_URL;
 
 export const getUserRecipes = async (userId) => {
     //call to the api to get recipes liked by the user
