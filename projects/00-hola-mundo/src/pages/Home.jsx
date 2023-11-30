@@ -1,12 +1,21 @@
-import React from 'react';
+import {useEffect, React} from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from '../components/Menu';
 import Feed from './Feed';
 import MyRecipes from './MyRecipes';
 import CreateRecipe from './CreateRecipe';
 import Account from './Account';
+import useUser from '../hooks/useUser';
 
 const Home = () => {
+  //updating user info in the context when the component mounts
+  const { user, getUserData } = useUser();
+  useEffect(() => {
+      getUserData(user)
+      console.log('user updated')
+      console.log(user)
+  }, [])
+
 
   return (
     <>

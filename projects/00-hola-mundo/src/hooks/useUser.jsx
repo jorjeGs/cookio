@@ -1,6 +1,7 @@
 import Context from "../context/UserContext";
 import { useCallback, useContext } from "react";
 import { likeRecipe, unlikeRecipe, getLikes } from '../services/likeService';
+import { getUserInfo } from "../services/userService";
 
 export default function useUser() {
     const { user, setUser, token, setToken, userLikes, setUserLikes, userRecipes, setUserRecipes } = useContext(Context);
@@ -68,14 +69,19 @@ export default function useUser() {
         )
     }, [user, setUserLikes]);
 
-    //function to get user recipes (complete data to display)
-    const getRecipes = useCallback((user) => {
-        //call to function service
-        //const response = getUserRecipes(user.id)
-        //then
-        //setUserRecipes(response)
-        //this will be called for myRecipes page
-    }, [user, setUserRecipes])
+    //function to update user info
+    const getUserData = useCallback((user) => {
+        //call to function service getUserInfo to update user info
+        const response = getUserInfo(user.id).then((response) => {
+            setUser(response);
+        })
+        .catch((error) => {
+            // Manejar errores, si es necesario
+            console.log(error)
+        }
+        )
+    }, [user, setUser]);
+
     return {
         isLogged: Boolean(token),
         login,
@@ -83,6 +89,7 @@ export default function useUser() {
         addLike,
         disLike,
         getUserLikes,
+        getUserData,
         userLikes,
         user
     };
