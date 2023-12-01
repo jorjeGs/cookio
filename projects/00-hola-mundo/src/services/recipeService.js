@@ -3,7 +3,14 @@ const url = import.meta.env.VITE_API_URL;
 
 export const getUserRecipes = async (userId) => {
     //call to the api to get recipes liked by the user
-    //return array of recipes to us in myRecipes page
+    try {
+        const response = await axios.get(url + '/users/' + userId + '/liked');
+        console.log(response.data);
+        return response.data;
+    }
+    catch(error) {
+        console.log(error);
+    }
 }
 
 export const getAllRecipes = async () => {
