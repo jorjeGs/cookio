@@ -12,8 +12,6 @@ const Home = () => {
   const { user, getUserData } = useUser();
   useEffect(() => {
       getUserData(user)
-      console.log('user updated')
-      console.log(user)
   }, [])
 
 
