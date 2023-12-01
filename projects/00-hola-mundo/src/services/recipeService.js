@@ -16,3 +16,21 @@ export const getAllRecipes = async () => {
         console.log(error);
     }
 }
+
+export const createRecipe = async (recipe) => {
+    //call to the api to create a new recipe
+    try {
+        // we will get a form data object from the create recipe page so
+        //we need to also add the headers to the request
+        const response = await axios.post(url + '/recipes', recipe, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    }
+    catch(error) {
+        alert("Error creating recipe");
+        console.log(error);
+    }
+}
