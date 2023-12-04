@@ -6,6 +6,7 @@ import MyRecipes from './MyRecipes';
 import CreateRecipe from './CreateRecipe';
 import Account from './Account';
 import useUser from '../hooks/useUser';
+import NotFound from './NotFound';
 
 const Home = () => {
   //updating user info in the context when the component mounts
@@ -22,11 +23,12 @@ const Home = () => {
       </header>
       <div className='App-body'>
         <Routes>
-          <Route path='/' element={<Navigate to='/home/feed' />} />
-          <Route path='feed' element={<Feed />} />
-          <Route path='recipes' element={<MyRecipes />} />
-          <Route path='create' element={<CreateRecipe />} />
-          <Route path='profile' element={<Account />} />
+          <Route index element={<Navigate to='/home/feed' />} />
+          <Route path='/feed' element={<Feed />} />
+          <Route path='/recipes' element={<MyRecipes />} />
+          <Route path='/create' element={<CreateRecipe />} />
+          <Route path='/profile' element={<Account />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
     </>
