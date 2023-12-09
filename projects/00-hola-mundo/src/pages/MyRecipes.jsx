@@ -14,7 +14,7 @@ const MyRecipes = () => {
     const { user, getUserLikes, userLikes } = useUser();
 
     const [recipes, setRecipes] = useState(null);
-    const url = import.meta.env.VITE_API_URL
+    const url = import.meta.env.VITE_IMAGE_URL;
 
     useEffect(() => {
         //also get user likes from function service getUserLikes
@@ -37,7 +37,7 @@ const MyRecipes = () => {
         <>
             <div className='flex w-full mt-5 h-full'>
                 <div className='feed-buttons-container xl:w-1/3 xl:flex xl:flex-col xl:h-fit xl:justify-center xl:gap-5 hidden'>
-                    <UserCard name={user.username} imgSrc={url + '/users/images/' + user.profile_pic} likes={user.likes} />
+                    <UserCard name={user.username} imgSrc={url + user.profile_pic} likes={user.likes} />
                 </div>
                 <div className="recipes-container sm:w-1/2 xl:w-1/3 sm:flex sm:flex-col gap-7 w-full no-scrollbar">
                     {
@@ -50,7 +50,7 @@ const MyRecipes = () => {
                                         recipeId={recipe.id}
                                         title={recipe.title}
                                         description={recipe.description}
-                                        imgSrc={`${url}/recipes/images/${recipe.image}`}
+                                        imgSrc={url + recipe.image}
                                         initialLikes={recipe.likes}
                                         created_by={recipe.created_by}
                                     />
