@@ -16,6 +16,5 @@ export const unlikeRecipe = async (recipeId, userId) => {
 export const getLikes = async (userId) => {
     // call to the api with axios to new endpoint who gets data from tr table
     const response = await axios.get(`${url}/recipes/liked/${userId}`);
-    console.log(response.data);
     return response.data;
 }

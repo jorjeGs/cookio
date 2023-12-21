@@ -51,15 +51,15 @@ const RecipeComponent = ({ recipeId, imgSrc , title, description, initialLikes, 
 
     //on click we change the state of the liked button
     return (
-        <div className="recipe-card w-3/4 max-h-fit rounded-2xl mx-auto">
+        <div className="recipe-card w-11/12 max-h-fit rounded-2xl mx-auto">
             <div className='recipe-card-image-container flex-row w-full h-auto justify-center items-center overflow-hidden rounded-2xl'>
                 <img src={imgSrc} alt={title} className='recipe-card-img w-full max-h-[400px]' />
             </div>
-            <div className='flex flex-row justify-center items-center w-full mt-3'>
-            <h2 className='recipe-title w-2/3 ml-8 text-yellow-500 text-4xl'><strong>{title}</strong></h2>
-            <p className='text-white w-1/3 text-xl'><strong>By: {created_by}</strong></p>
+            <div className='flex flex-row justify-center items-center w-full mt-3 gap-2'>
+            <h2 className='recipe-title w-2/3 lg:ml-8 ml-2 text-yellow-500 xl:text-3xl lg:text-2xl md:text-xl text-base'><strong>{title}</strong></h2>
+            <p className='text-white w-1/3 lg:text-xl md:text-lg text-sm'><strong>By: {created_by}</strong></p>
             </div>
-            <p className='recipe-description flex flex-row ml-8 mt-3 text-white items-center text-xl'>{description}</p>
+            <p className='recipe-description flex flex-row lg:ml-8 ml-2 mt-3 text-white items-center lg:text-lg md:text-base text-sm'>{description}</p>
             <div className="button-container flex flex-row mt-3 justify-between w-full items-center mb-3 text-3xl">
                 <div className='w-full flex justify-center items-center gap-3'>
                     <button className="Like-button" onClick={handleLike} ><FaHeart className={likeStyle} /></button>
