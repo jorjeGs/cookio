@@ -53,7 +53,7 @@ const RecipeComponent = ({ recipeId, imgSrc , title, description, initialLikes, 
     return (
         <div className="recipe-card w-3/4 max-h-fit rounded-2xl mx-auto">
             <div className='recipe-card-image-container flex-row w-full h-auto justify-center items-center overflow-hidden rounded-2xl'>
-                <img src={imgSrc} alt={title} className='recipe-card-img' />
+                <img src={imgSrc} alt={title} className='recipe-card-img w-full max-h-[400px]' />
             </div>
             <div className='flex flex-row justify-center items-center w-full mt-3'>
             <h2 className='recipe-title w-2/3 ml-8 text-yellow-500 text-4xl'><strong>{title}</strong></h2>
