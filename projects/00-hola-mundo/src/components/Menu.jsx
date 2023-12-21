@@ -9,7 +9,7 @@ import { BiSolidBookHeart } from "react-icons/bi";
 
 function onToggleMenu() {
     const menu = document.querySelector('.nav-links');
-    menu.classList.toggle('top-[14%]');
+    menu.classList.toggle('top-[10%]');
 }
 
  const Menu = () => {
@@ -29,7 +29,7 @@ function onToggleMenu() {
         <nav className='flex justify-between items-center w-[92%] mx-auto h-20 '>
             <div className='logo justify-center'>
                 <Link to='/home/feed'>                 
-                        <h1 className='text-yellow-500 text-5xl'><strong><i>Cookio</i></strong></h1>
+                        <h1 className='text-yellow-500 sm:text-5xl text-4xl'><strong><i>Cookio</i></strong></h1>
                 </Link>    
             </div>
             <div className='menu nav-links duration-500 md:hidden md:static absolute md:min-h-fit min-h-[40vh] left-0 top-[-100%] md:w-auto md:opacity-100 opacity-100 w-full flex items-center'>
@@ -53,10 +53,10 @@ function onToggleMenu() {
             </div>
             <div className='user flex items-center gap-6'>
                 <button onClick={handleLogout} >
-                    <GrPowerShutdown className='w-16 h-auto text-white border-black hover:text-yellow-500' />
+                    <GrPowerShutdown className='sm:w-16 w-10 h-auto text-white border-black hover:text-yellow-500' />
                 </button>
                 <button onClick={onToggleMenu} className='md:hidden block'>
-                    <FaBars className='w-16 h-auto text-white border-black hover:text-yellow-500' />
+                    <FaBars className='sm:w-16 h-auto w-10 text-white border-black hover:text-yellow-500' />
                 </button>
             </div>
         </nav>
